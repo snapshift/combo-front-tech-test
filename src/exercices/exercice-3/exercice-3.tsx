@@ -1,3 +1,7 @@
+/**
+ * There are some performances issues in the component.
+ * Refactor it to improve performances
+ */
 import React, { useState, useEffect } from "react";
 
 const fetchData = async ({ id }) => {
