@@ -4,7 +4,7 @@
  * Problem:
  * Write a function `findLargestProduct` that takes an array of positive integers as params 
  * and returns the largest product of any two distinct elements in the array. 
- * You can assume that the params array contains at least two positive integers.
+ * The params array must contains at least two positive integers.
  * 
  * Example:
  * findLargestProduct([1, 2, 3, 4, 5]) => 20 // Largest product: 4 * 5
