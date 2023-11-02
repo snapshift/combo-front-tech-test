@@ -2,10 +2,8 @@
  * You can start the app using:
  * REACT_APP_EX=3 npm start
  * 
- * This component contains few performances issues.
  * You can open the console to check the logs.
- * 
- * Try to refactor it to fix problems, and perf issues.
+ * Refactor this component to improve the overall code quality
  */
 import React, { useState, useEffect } from "react";
 
@@ -23,13 +21,17 @@ const UnoptimizedComponent = () => {
   console.count("render:UnoptimizedComponent");
   const [data, setData] = useState<number[]>([]);
   const [search, setSearch] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setSearch('');
   }, [setSearch]);
 
   useEffect(() => {
-    fetchData({search}).then((newData) => setData(newData));
+    setLoading(true)
+    fetchData({search})
+      .then((newData) => setData(newData))
+      .then(() => setLoading(false));
   });
 
   return (
@@ -44,6 +46,7 @@ const UnoptimizedComponent = () => {
       </div>
       <div>
       <h1 className="text-2xl mb-2">List</h1>
+      {loading && <div>Loading...</div>}
         <div>
           {data.map((item) => <div key={item} className="border-b-2 border-neutral-300 p-4">
             <p>item n°{item}</p>
