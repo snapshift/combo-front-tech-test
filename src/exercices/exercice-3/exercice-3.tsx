@@ -7,21 +7,25 @@
  */
 import React, { useState, useEffect } from "react";
 
-const fetchData = async ({ search }): Promise<number[]> => {
-  console.count("invoke:fetchData");
+const fetchData = async (
+  { search, cursor }: { search: string, cursor: number}
+): Promise<number[]> => {
+  console.count(`invoke:fetchData search=${search} cursor=${cursor}`);
+  const totalDataCount = cursor * 50;
   return new Promise((resolve) => {
     setTimeout(() => {
-      const arr = Array.from(Array(50).keys())
+      const arr = Array.from(Array(totalDataCount).keys())
       resolve(arr);
-    }, 1000);
+    }, 500);
   });
 };
 
 const UnoptimizedComponent = () => {
   console.count("render:UnoptimizedComponent");
   const [data, setData] = useState<number[]>([]);
-  const [search, setSearch] = useState<string>();
+  const [search, setSearch] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [cursor, setCursor] = useState<number>(1);
 
   useEffect(() => {
     setSearch('');
@@ -29,10 +33,21 @@ const UnoptimizedComponent = () => {
 
   useEffect(() => {
     setLoading(true)
-    fetchData({search})
+    fetchData({search, cursor})
       .then((newData) => setData(newData))
-      .then(() => setLoading(false));
+      .then(() => {
+        setLoading(false)});
   });
+
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      const scrolledTo = window.scrollY + window.innerHeight
+      const isReachBottom = document.body.scrollHeight === scrolledTo
+      if(isReachBottom) {
+        setCursor(cursor + 1)
+      }
+    });
+  }, [setCursor, cursor]);
 
   return (
     <div className="flex flex-col w-96 m-auto py-20 gap-10">
@@ -46,12 +61,15 @@ const UnoptimizedComponent = () => {
       </div>
       <div>
       <h1 className="text-2xl mb-2">List</h1>
-      {loading && <div>Loading...</div>}
         <div>
-          {data.map((item) => <div key={item} className="border-b-2 border-neutral-300 p-4">
-            <p>item n°{item}</p>
-          </div>)}
+          {data.map((item) => 
+            (<div key={item} className="border-b-2 border-neutral-300 p-4">
+              <p>{item}</p>
+            </div>
+            )
+          )}
         </div>
+        {loading && <div>Loading...</div>}
       </div>
     </div>
   );

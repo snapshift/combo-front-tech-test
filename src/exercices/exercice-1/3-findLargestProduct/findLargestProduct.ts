@@ -18,6 +18,6 @@
  * @return {number}
  */
 
-export const findLargestProduct = (arr) => {
+export const findLargestProduct = (arr: any) => {
   // Your optimized code here
 }

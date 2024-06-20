@@ -18,7 +18,7 @@
  * - Ask for one or more if you're hard stuck !
  */
 
-const usePrevious = () => {
+const usePrevious = (arg: any) => {
 
 }
 

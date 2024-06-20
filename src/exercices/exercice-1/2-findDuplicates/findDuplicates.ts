@@ -18,6 +18,6 @@
  * @return {number[]}
  */
 
-export const findDuplicates = (arr) => {
+export const findDuplicates = (arr: any) => {
   // Your optimized code here
 }

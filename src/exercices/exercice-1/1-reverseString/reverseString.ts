@@ -16,6 +16,6 @@
  * @return string
  */
 
-export const reverseString = (string) => {
+export const reverseString = (string: any) => {
   // Your code here
 }
