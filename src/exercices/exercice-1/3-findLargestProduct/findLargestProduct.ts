@@ -19,5 +19,5 @@
  */
 
 export const findLargestProduct = (arr: any) => {
-  // Your optimized code here
+  // do your magic
 }
