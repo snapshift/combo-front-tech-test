@@ -10,7 +10,7 @@
  * findLargestProduct([1, 2, 3, 4, 5]) => 20 // Largest product: 4 * 5
  * findLargestProduct([4, 2, 5, 1, 5]) => 20 // Largest product: 4 * 5
  * findLargestProduct([5, 7, 9, 11, 13]) => 143 // Largest product: 11 * 13`
- * 
+ * findLargestProduct([1]) => Typescript Error, or throw an error
  * /
 
 /**
@@ -18,9 +18,6 @@
  * @return {number}
  */
 
-export const findLargestProduct = (arr: any) => {
-  console.log('yoyo')
+export const findLargestProduct = (arr: number[]) => {
+  // do your magic
 }
-
-
-findLargestProduct([])
