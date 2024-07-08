@@ -6,6 +6,7 @@
  * Refactor this component to improve the overall code quality
  */
 import React, { useState, useEffect } from "react";
+import { Container } from "./components/container";
 
 const fetchData = async (
   { search, cursor }: { search: string, cursor: number}
@@ -75,4 +76,6 @@ const UnoptimizedComponent = () => {
   );
 };
 
-export default UnoptimizedComponent;
+// export default UnoptimizedComponent;
+
+export default Container

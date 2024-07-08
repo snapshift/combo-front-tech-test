@@ -16,6 +16,6 @@
  * @return string
  */
 
-export const reverseString = (string: any) => {
-  // Your code here
+export const reverseString = (stringToReverse: string): string => {
+  return stringToReverse.split('').reverse().toString().replaceAll(',','')
 }

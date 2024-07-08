@@ -18,8 +18,18 @@
  * - Ask for one or more if you're hard stuck !
  */
 
-const usePrevious = (arg: any) => {
+import { useEffect, useRef } from "react"
 
+const usePrevious = (parameter: any) => {
+    const ref = useRef()
+
+    useEffect(() => {
+        if (ref.current !== parameter) {
+            ref.current = parameter
+        }
+    }, [parameter])
+
+    return ref.current
 }
 
 export default usePrevious

@@ -18,6 +18,22 @@
  * @return {number[]}
  */
 
-export const findDuplicates = (arr: any) => {
-  // Your optimized code here
+export const findDuplicates = (arrayOfNumbers: number[]): number[] => {
+  const ducplicateNumberArray: number[] = []
+
+  arrayOfNumbers.reduce((accumulator, numberElement) => {
+    /* @ts-ignore-next-line */
+    if (!accumulator.includes(numberElement)) {
+    /* @ts-ignore-next-line */
+      accumulator.push(numberElement)
+    } else {
+      if (!ducplicateNumberArray.includes(numberElement)) {
+        ducplicateNumberArray.push(numberElement)
+      }
+    }
+
+    return accumulator
+  }, [])
+
+  return ducplicateNumberArray
 }
